@@ -4,6 +4,7 @@ import useAuth from "../hooks/useAuth";
 import useAxiosSecure from "../hooks/useAxiosSecure";
 import Loader from "../Components/Loader";
 import Swal from "sweetalert2";
+import UpdateModal from "../Components/UpdateModal";
 
 const MyEvent = () => {
   const { user } = useAuth();
@@ -47,51 +48,50 @@ const MyEvent = () => {
   };
 
   return (
-   <div>
-     <div className="grid grid-cols-1 md:grid-cols-2 gap-4 p-4">
-      {events.map((event) => (
-        <div key={event._id} className="border p-4 rounded shadow">
-          <h2 className="text-xl font-bold">{event.eventTitle}</h2>
-          <p>Posted by: {event.userName}</p>
-          <p>Date & Time: {event.dateAndTime}</p>
-          <p>Location: {event.eventLocation}</p>
-          <p>{event.eventDescription}</p>
-          <p>Attendees: {event.atendeeCount}</p>
-          <div className="flex gap-2 mt-2">
-            <button
-              className="bg-blue-500 text-white px-3 py-1 rounded"
-              onClick={() => openUpdateModal(event)}
-            >
-              Update
-            </button>
-            <button
-              className="bg-red-500 text-white px-3 py-1 rounded"
-              onClick={() => handleDelete(event._id)}
-            >
-              Delete
-            </button>
+    <div>
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-4 p-4">
+        {events.map((event) => (
+          <div key={event._id} className="border p-4 rounded shadow">
+            <h2 className="text-xl font-bold">{event.eventTitle}</h2>
+            <p>Posted by: {event.userName}</p>
+            <p>Date & Time: {new Date(event.dateAndTime).toLocaleString()}</p>
+            <p>Location: {event.eventLocation}</p>
+            <p>{event.eventDescription}</p>
+            <p>Attendees: {event.atendeeCount}</p>
+            <div className="flex gap-2 mt-2">
+              <button
+                className="bg-blue-500 text-white px-3 py-1 rounded"
+                onClick={() => openUpdateModal(event)}
+              >
+                Update
+              </button>
+              <button
+                className="bg-red-500 text-white px-3 py-1 rounded"
+                onClick={() => handleDelete(event._id)}
+              >
+                Delete
+              </button>
+            </div>
           </div>
-        </div>
-      ))}
-
+        ))}
+      </div>
+      <div>
+        {selectedEvent && (
+          <UpdateModal
+            event={selectedEvent}
+            onClose={() => setSelectedEvent(null)}
+            onUpdate={(updatedEvent) => {
+              setEvents(
+                events.map((e) =>
+                  e._id === updatedEvent._id ? updatedEvent : e
+                )
+              );
+              setSelectedEvent(null);
+            }}
+          />
+        )}
+      </div>
     </div>
-           <div>
-             {
-    selectedEvent && (
-      <UpdateModal
-        event={selectedEvent}
-        onClose={() => setSelectedEvent(null)}
-        onUpdate={(updatedEvent) => {
-          setEvents(
-            events.map((e) => (e._id === updatedEvent._id ? updatedEvent : e))
-          );
-          setSelectedEvent(null);
-        }}
-      />
-    );
-  }
-           </div>
-   </div>
   );
 };
 

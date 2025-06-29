@@ -7,6 +7,7 @@ import Login from "../Pages/Auth/Login";
 import PrivateRoute from "./PrivateRoute";
 import Events from "../Pages/Events";
 import AddEvent from "../Pages/AddEvent";
+import MyEvent from "../Pages/MyEvent";
 
 const router = createBrowserRouter([
   {
@@ -27,6 +28,14 @@ const router = createBrowserRouter([
         element: (
           <PrivateRoute>
             <AddEvent />
+          </PrivateRoute>
+        ),
+      },
+      {
+        path: "/myEvent",
+        element: (
+          <PrivateRoute>
+            <MyEvent/>
           </PrivateRoute>
         ),
       },
