@@ -1,11 +1,12 @@
-import React, { useContext } from "react";
+import React from "react";
 import logo from "../assets/logo.png";
 import { IoMenu } from "react-icons/io5";
 import { Link, NavLink } from "react-router";
 import Theme from "./Theme";
-import AuthContext from "../Providers/AuthContext";
+import Swal from "sweetalert2";
+import useAuth from "../hooks/useAuth";
 const Navbar = () => {
-  const { user, setUser } = useContext(AuthContext);
+  const { user, setUser } = useAuth();
   const links = (
     <>
       <li>
@@ -15,13 +16,23 @@ const Navbar = () => {
         <NavLink to="/events">Events</NavLink>
       </li>
       <li>
-        <NavLink to="/addEvent">Add Event</NavLink>
+        <NavLink to="/addEvents">Add Event</NavLink>
       </li>
       <li>
         <NavLink to="/myEvent">My Event</NavLink>
       </li>
     </>
   );
+  const handleLogOut = () => {
+    localStorage.removeItem("authUser");
+    Swal.fire({
+      position: "center",
+      icon: "success",
+      title: "Logged out successful",
+      showConfirmButton: false,
+      timer: 1500,
+    });
+  };
   return (
     <div className="bg-black/30 backdrop-blur-2xl dark:bg-white/30">
       <div className="navbar  w-11/12 p-0 mx-auto text-white">
@@ -69,11 +80,12 @@ const Navbar = () => {
               </div>
               <ul
                 tabIndex={0}
-                className="menu menu-sm dropdown-content bg-gray-500 w-44 mt-2 p-2 shadow"
+                className="menu menu-sm dropdown-content bg-white w-44 mt-2 p-2 shadow rounded"
               >
+                <p className="text-center my-3 text-black">{user.name}</p>
                 <button
                   onClick={() => {
-                    localStorage.removeItem("authUser");
+                    handleLogOut();
                     setUser(null);
                   }}
                   className="btn border-none btn-primary"

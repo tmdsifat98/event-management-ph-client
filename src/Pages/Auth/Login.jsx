@@ -1,16 +1,19 @@
-import React, { useContext, useState } from "react";
+import React, { useState } from "react";
 import { IoEye, IoEyeOff } from "react-icons/io5";
-import { Link, useNavigate } from "react-router";
+import { Link, useLocation, useNavigate } from "react-router";
 import loginAnimation from "../../assets/loginLotie.json";
 import Lottie from "lottie-react";
 import useAxiosSecure from "../../hooks/useAxiosSecure";
 import Swal from "sweetalert2";
-import AuthContext from "../../Providers/AuthContext";
+import useAuth from "../../hooks/useAuth";
 
 const Login = () => {
   const axiosSecure = useAxiosSecure();
-  const { setUser } = useContext(AuthContext);
+  const { setUser } = useAuth();
+
+  const location = useLocation();
   const navigate = useNavigate();
+
   const [showPass, setShowPass] = useState(false);
   const handleLogin = (e) => {
     e.preventDefault();
@@ -24,18 +27,30 @@ const Login = () => {
         if (res.data.message === "Login successful.") {
           localStorage.setItem("authUser", JSON.stringify(res.data.user));
           setUser(res.data.user);
-          navigate("/");
+          navigate(location?.state || "/");
           Swal.fire({
             position: "center",
             icon: "success",
-            title: "Your work has been saved",
+            title: "Logged in successfully",
             showConfirmButton: false,
             timer: 1500,
           });
         }
       })
       .catch((err) => {
-        console.log(err);
+        if (err.response.data === "Invalid credentials") {
+          Swal.fire({
+            position: "center",
+            icon: "error",
+            title: "Please input a valid email",
+          });
+        } else if (err.response.data === "Invalid password") {
+          Swal.fire({
+            position: "center",
+            icon: "error",
+            title: "Invalid password",
+          });
+        }
       });
   };
   return (
