@@ -1,9 +1,11 @@
-import React from "react";
+import React, { useContext } from "react";
 import logo from "../assets/logo.png";
 import { IoMenu } from "react-icons/io5";
 import { Link, NavLink } from "react-router";
 import Theme from "./Theme";
+import AuthContext from "../Providers/AuthContext";
 const Navbar = () => {
+  const { user, setUser } = useContext(AuthContext);
   const links = (
     <>
       <li>
@@ -48,10 +50,45 @@ const Navbar = () => {
           <ul className="menu menu-horizontal px-1">{links}</ul>
         </div>
         <div className="navbar-end gap-4">
-            <Theme/>
-          <Link to="/auth/login">
-            <button className="btn-primary px-3 lg:px-6 btn">Sign In</button>
-          </Link>
+          <Theme />
+          {user ? (
+            <div className="dropdown dropdown-end">
+              <div
+                tabIndex={0}
+                role="button"
+                className="btn btn-ghost btn-circle avatar"
+              >
+                <div className="w-10 rounded-full z-50">
+                  <img
+                    className="tooltip tooltip-bottom"
+                    data-tip={user?.displayName}
+                    alt={user?.name}
+                    src={user?.photoURL}
+                  />
+                </div>
+              </div>
+              <ul
+                tabIndex={0}
+                className="menu menu-sm dropdown-content bg-gray-500 w-44 mt-2 p-2 shadow"
+              >
+                <button
+                  onClick={() => {
+                    localStorage.removeItem("authUser");
+                    setUser(null);
+                  }}
+                  className="btn border-none btn-primary"
+                >
+                  Log Out
+                </button>
+              </ul>
+            </div>
+          ) : (
+            <Link to="/auth/login">
+              <button className="btn bg-[#44cf44] border-none lg:px-6 ">
+                Login
+              </button>
+            </Link>
+          )}
         </div>
       </div>
     </div>

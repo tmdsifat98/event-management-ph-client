@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { IoEye, IoEyeOff } from "react-icons/io5";
-import { Link } from "react-router";
+import { Link, useNavigate } from "react-router";
 import signUpAnimation from "../../assets/signuplottie.json";
 import Lottie from "lottie-react";
 import useAxiosSecure from "../../hooks/useAxiosSecure";
@@ -8,6 +8,7 @@ import Swal from "sweetalert2";
 
 const SignUp = () => {
   const axiosSecure = useAxiosSecure();
+  const navigate=useNavigate()
   const [showPass, setShowPass] = useState(false);
   const [error, setError] = useState("");
   const validatePassword = (e) => {
@@ -28,12 +29,12 @@ const SignUp = () => {
     const form = e.target;
     const formData = new FormData(form);
     const userData = Object.fromEntries(formData.entries());
-    console.log(userData);
 
     axiosSecure
       .post("/register", userData)
       .then((res) => {
         if (res.data.insertedId) {
+          navigate("/auth/login")
           Swal.fire({
             position: "center",
             icon: "success",

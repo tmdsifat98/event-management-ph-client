@@ -1,13 +1,42 @@
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
 import { IoEye, IoEyeOff } from "react-icons/io5";
-import { Link } from "react-router";
-import loginAnimation from '../../assets/loginLotie.json';
+import { Link, useNavigate } from "react-router";
+import loginAnimation from "../../assets/loginLotie.json";
 import Lottie from "lottie-react";
+import useAxiosSecure from "../../hooks/useAxiosSecure";
+import Swal from "sweetalert2";
+import AuthContext from "../../Providers/AuthContext";
 
 const Login = () => {
+  const axiosSecure = useAxiosSecure();
+  const { setUser } = useContext(AuthContext);
+  const navigate = useNavigate();
   const [showPass, setShowPass] = useState(false);
   const handleLogin = (e) => {
     e.preventDefault();
+    const form = e.target;
+    const email = form.email.value;
+    const password = form.password.value;
+    const user = { email, password };
+    axiosSecure
+      .post("/login", user)
+      .then((res) => {
+        if (res.data.message === "Login successful.") {
+          localStorage.setItem("authUser", JSON.stringify(res.data.user));
+          setUser(res.data.user);
+          navigate("/");
+          Swal.fire({
+            position: "center",
+            icon: "success",
+            title: "Your work has been saved",
+            showConfirmButton: false,
+            timer: 1500,
+          });
+        }
+      })
+      .catch((err) => {
+        console.log(err);
+      });
   };
   return (
     <div className="flex flex-col md:flex-row justify-center md:gap-20 items-center min-h-[calc(100vh-64px)]">
