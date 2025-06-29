@@ -1,0 +1,9 @@
+@import "tailwindcss";
+@custom-variant dark (&:where(.dark, .dark *));
+@plugin "daisyui";
+
+
+a.active{
+    color: blue;
+    font-weight: 600;
+}
