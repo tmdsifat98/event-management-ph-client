@@ -3,7 +3,7 @@ import useAuth from "../hooks/useAuth";
 import Swal from "sweetalert2";
 import useAxiosLocal from "../hooks/useAxiosLocal";
 
-function AddEvent() {
+const AddEvent = () => {
   const { user } = useAuth();
   const axiosLocal = useAxiosLocal();
 
@@ -107,6 +107,6 @@ function AddEvent() {
       </div>
     </div>
   );
-}
+};
 
 export default AddEvent;
