@@ -1,20 +1,26 @@
 import React from "react";
-import useAxiosSecure from "../hooks/useAxiosSecure";
 import useAuth from "../hooks/useAuth";
 import Swal from "sweetalert2";
+import useAxiosLocal from "../hooks/useAxiosLocal";
 
 function AddEvent() {
-  const axiosSecure = useAxiosSecure();
   const { user } = useAuth();
+  const axiosLocal = useAxiosLocal();
 
   const handleSubmit = async (e) => {
     e.preventDefault();
     const form = e.target;
     const formData = new FormData(form);
     const data = Object.fromEntries(formData.entries());
-    const eventdata = { ...data, atendeeCount: 0, atendee: [] };
+    const eventdata = {
+      ...data,
+      userEmail: user.email,
+      userName: user.name,
+      atendeeCount: 0,
+      atendee: [],
+    };
 
-    axiosSecure
+    axiosLocal
       .post("/events", eventdata)
       .then((res) => {
         if (res.data) {
@@ -45,7 +51,7 @@ function AddEvent() {
             </label>
             <input
               type="text"
-              name="event-title"
+              name="eventTitle"
               placeholder="Event Title"
               required
               className="w-full px-4 py-2 border border-gray-300 rounded-lg bg-white  text-black  focus:outline-none "
@@ -57,7 +63,6 @@ function AddEvent() {
             </label>
             <input
               value={user.name}
-              name="event-title"
               readOnly
               className="w-full px-4 py-2 border border-gray-300  rounded-lg bg-white text-black focus:outline-none "
             />
@@ -68,7 +73,7 @@ function AddEvent() {
             </label>
             <input
               type="datetime-local"
-              name="date-and-time"
+              name="dateAndTime"
               className="w-full px-4 py-2 border border-gray-300 dark:border-gray-700 rounded-lg text-sm bg-white  text-black"
             />
           </div>
@@ -78,7 +83,7 @@ function AddEvent() {
             </label>
             <input
               type="text"
-              name="event-location"
+              name="eventLocation"
               placeholder="Event Location"
               required
               className="w-full px-4 py-2 border border-gray-300 dark:border-gray-700 rounded-lg bg-white  text-black focus:outline-none "
@@ -89,7 +94,7 @@ function AddEvent() {
               Event Description
             </label>
             <textarea
-              name="event-description"
+              name="eventDescription"
               placeholder="Event description"
               className="w-full px-4 py-2 border border-gray-300 dark:border-gray-700 rounded-lg bg-white  text-black focus:outline-none "
             ></textarea>
