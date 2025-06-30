@@ -1,16 +1,16 @@
-import axios from "axios";
 import { RxCross2 } from "react-icons/rx";
 import Swal from "sweetalert2";
+import useAxiosLocal from "../hooks/useAxiosLocal";
 
 const UpdateModal = ({ event, onClose, onUpdate }) => {
+  const axiosLocal = useAxiosLocal()
   const handleSubmit = async (e) => {
     e.preventDefault();
     const form = e.target;
     const formData = new FormData(form);
     const data = Object.fromEntries(formData.entries());
 
-    try {
-      await axios.patch(`http://localhost:3000/events/${event._id}`, data);
+      axiosLocal.patch(`/events/${event._id}`, data);
 
       Swal.fire("Updated!", "Your event has been updated.", "success");
 
@@ -19,10 +19,7 @@ const UpdateModal = ({ event, onClose, onUpdate }) => {
         ...data,
       };
       onUpdate(updatedEvent);
-    } catch (error) {
-      console.error(error);
-      Swal.fire("Error!", "Something went wrong.", "error");
-    }
+
   };
 
   return (

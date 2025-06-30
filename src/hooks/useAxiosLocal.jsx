@@ -1,7 +1,7 @@
 import axios from "axios";
 
 const axiosLocal = axios.create({
-  baseURL: "http://localhost:3000",
+  baseURL: "https://event-management-server-topaz.vercel.app",
 });
 const useAxiosLocal = () => {
   return axiosLocal;
