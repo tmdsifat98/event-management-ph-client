@@ -28,7 +28,7 @@ const NewsLater = () => {
   };
 
   return (
-    <div className="bg-gray-400 w-11/12 md:w-3/4 lg:w-2/5 mx-auto rounded-lg my-10 text-white flex flex-col items-center text-center">
+    <div className="bg-gray-400 dark:bg-gray-800 w-11/12 md:w-3/4 lg:w-2/5 mx-auto rounded-lg my-10 text-black dark:text-gray-200 flex flex-col items-center text-center">
       <h2 className="text-4xl font-bold mb-2 font-playfair mt-7">
         Subscribe to our Newsletter
       </h2>
