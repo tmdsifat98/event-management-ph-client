@@ -1,23 +1,18 @@
 import React, { useEffect, useState } from "react";
-import useAuth from "../hooks/useAuth";
-import useAxiosLocal from "../hooks/useAxiosLocal";
-import axios from "axios";
+import NoData from "../../Components/NoData";
+import useAuth from "../../hooks/useAuth";
+import useAxiosLocal from "../../hooks/useAxiosLocal";
 import Swal from "sweetalert2";
-import Loader from "../Components/Loader";
-import NoData from "../Components/NoData";
+import Loader from "../../Components/Loader";
 
-const Events = () => {
+const EventList = ({ events, loading }) => {
   const { user } = useAuth();
   const axiosLocal = useAxiosLocal();
-  const [events, setEvents] = useState([]);
-  const [loading, setLoading] = useState(true);
+  const [updatedEvent, setUpdatedEvents] = useState([]);
 
   useEffect(() => {
-    axiosLocal.get("/events").then((res) => {
-      setEvents(res.data);
-      setLoading(false);
-    });
-  }, [axiosLocal]);
+    setUpdatedEvents(events);
+  }, [events]);
 
   const handleJoin = async (id) => {
     const userEmail = user?.email;
@@ -36,7 +31,7 @@ const Events = () => {
             showConfirmButton: false,
             timer: 1500,
           });
-          setEvents((prevEvents) =>
+          setUpdatedEvents((prevEvents) =>
             prevEvents.map((event) =>
               event._id === id
                 ? { ...event, attendeeCount: event.attendeeCount + 1 }
@@ -56,18 +51,20 @@ const Events = () => {
       .catch((err) => console.log(err));
   };
 
-  if (loading) return <Loader h="true" />;
-
   return (
-    <div className="w-9/12 mx-auto min-h-[calc(100vh-322px)]">
-      {events.length < 1 ? (
-        <NoData message="No upcoming events at this moment" />
+    <div className="md:w-9/12 mx-auto min-h-[calc(100vh-322px)] dark:text-white">
+      {loading ? (
+        <Loader />
+      ) : updatedEvent.length < 1 ? (
+        <NoData message="No events available with your search" />
       ) : (
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 p-4">
-          {events.map((event) => (
+          {updatedEvent.map((event) => (
             <div key={event._id} className="border rounded-lg p-4 shadow">
               <h2 className="text-xl font-bold">{event.eventTitle}</h2>
-              <p className="text-gray-600">Posted by: {event.userName}</p>
+              <p className="text-gray-600 dark:text-gray-300">
+                Posted by: {event.userName}
+              </p>
               <p>Date & Time: {new Date(event.dateAndTime).toLocaleString()}</p>
               <p>Location: {event.eventLocation}</p>
               <p className="mt-2">{event.eventDescription}</p>
@@ -86,4 +83,4 @@ const Events = () => {
   );
 };
 
-export default Events;
+export default EventList;

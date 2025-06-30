@@ -52,7 +52,10 @@ const MyEvent = () => {
   };
 
   return (
-    <div className="w-9/12 mx-auto min-h-[calc(100vh-323px)]">
+    <div className="md:w-9/12 mx-auto min-h-[calc(100vh-335px)] dark:text-white">
+      <h1 className="text-5xl text-center font-bold font-playfair mt-3 mb-5">
+        My Events
+      </h1>
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 p-4">
         {events.map((event) => (
           <div key={event._id} className="border p-4 rounded shadow">

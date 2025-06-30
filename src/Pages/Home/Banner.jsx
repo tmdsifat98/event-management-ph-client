@@ -12,7 +12,6 @@ const Banner = () => {
   return (
     <div>
       <Swiper
-        spaceBetween={30}
         loop={true}
         speed={900}
         pagination={{
@@ -54,7 +53,7 @@ const Banner = () => {
                 everyone.
               </p>
               <Link to="/addEvents">
-                <button className="btn btn-primary">Create</button>
+                <button className="btn btn-primary">Create Event</button>
               </Link>
             </div>
           </div>

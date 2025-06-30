@@ -5,9 +5,10 @@ import AuthLayout from "../Layouts/AuthLayout";
 import SignIn from "../Pages/Auth/SignUp";
 import Login from "../Pages/Auth/Login";
 import PrivateRoute from "./PrivateRoute";
-import Events from "../Pages/Events";
 import AddEvent from "../Pages/AddEvent";
 import MyEvent from "../Pages/MyEvent";
+import ErrorPage from "../Pages/Error/ErrorPage";
+import EventPage from "../Pages/Event/EventPage";
 
 const router = createBrowserRouter([
   {
@@ -19,7 +20,7 @@ const router = createBrowserRouter([
         path: "/events",
         element: (
           <PrivateRoute>
-            <Events />
+            <EventPage/>
           </PrivateRoute>
         ),
       },
@@ -35,7 +36,7 @@ const router = createBrowserRouter([
         path: "/myEvent",
         element: (
           <PrivateRoute>
-            <MyEvent/>
+            <MyEvent />
           </PrivateRoute>
         ),
       },
@@ -49,6 +50,7 @@ const router = createBrowserRouter([
       { path: "/auth/login", Component: Login },
     ],
   },
+  { path: "*", Component: ErrorPage },
 ]);
 
 export default router;
