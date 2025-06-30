@@ -14,10 +14,11 @@ const AddEvent = () => {
     const data = Object.fromEntries(formData.entries());
     const eventdata = {
       ...data,
+      createdAt: new Date().toISOString(),
       userEmail: user.email,
       userName: user.name,
-      atendeeCount: 0,
-      atendee: [],
+      attendeeCount: 0,
+      attendee: [],
     };
 
     axiosLocal
@@ -31,6 +32,7 @@ const AddEvent = () => {
             showConfirmButton: false,
             timer: 1500,
           });
+          form.reset();
         }
       })
       .catch((err) => {

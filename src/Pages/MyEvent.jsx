@@ -32,13 +32,17 @@ const MyEvent = () => {
       showCancelButton: true,
       confirmButtonColor: "#3085d6",
       cancelButtonColor: "#d33",
-      confirmButtonText: "Yes, delete it!",
-    }).then(async (result) => {
+      confirmButtonText: "Delete",
+    }).then((result) => {
       if (result.isConfirmed) {
-        await axios.delete(`http://localhost:3000/events/${id}`);
+        axios.delete(`http://localhost:3000/events/${id}`);
         setEvents(events.filter((e) => e._id !== id));
 
-        Swal.fire("Deleted!", "Your event has been deleted.", "success");
+        Swal.fire({
+          title: "Deleted!",
+          text: "Your file has been deleted.",
+          icon: "success",
+        });
       }
     });
   };
@@ -48,8 +52,8 @@ const MyEvent = () => {
   };
 
   return (
-    <div>
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-4 p-4">
+    <div className="w-9/12 mx-auto min-h-[calc(100vh-323px)]">
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 p-4">
         {events.map((event) => (
           <div key={event._id} className="border p-4 rounded shadow">
             <h2 className="text-xl font-bold">{event.eventTitle}</h2>
@@ -57,7 +61,7 @@ const MyEvent = () => {
             <p>Date & Time: {new Date(event.dateAndTime).toLocaleString()}</p>
             <p>Location: {event.eventLocation}</p>
             <p>{event.eventDescription}</p>
-            <p>Attendees: {event.atendeeCount}</p>
+            <p>Attendees: {event.attendeeCount}</p>
             <div className="flex gap-2 mt-2">
               <button
                 className="bg-blue-500 text-white px-3 py-1 rounded"

@@ -1,4 +1,5 @@
 import axios from "axios";
+import { RxCross2 } from "react-icons/rx";
 import Swal from "sweetalert2";
 
 const UpdateModal = ({ event, onClose, onUpdate }) => {
@@ -17,7 +18,6 @@ const UpdateModal = ({ event, onClose, onUpdate }) => {
         ...event,
         ...data,
       };
-
       onUpdate(updatedEvent);
     } catch (error) {
       console.error(error);
@@ -27,7 +27,10 @@ const UpdateModal = ({ event, onClose, onUpdate }) => {
 
   return (
     <div className="fixed inset-0 z-50 bg-black/50 flex items-center justify-center">
-      <div className="bg-white dark:bg-slate-800 p-6 rounded shadow max-w-lg w-full">
+      <div className="bg-white dark:bg-slate-800 p-6 rounded shadow max-w-lg w-full relative">
+        <button type="button" onClick={onClose} className="absolute top-3 right-3 cursor-pointer hover:text-red-600">
+          <RxCross2 size={23}/>
+        </button>
         <h2 className="text-xl font-bold mb-4">Update Event</h2>
         <form onSubmit={handleSubmit} className="space-y-3">
           <div>
@@ -69,14 +72,9 @@ const UpdateModal = ({ event, onClose, onUpdate }) => {
               required
             />
           </div>
-          <div className="flex justify-end gap-2 mt-4">
-            <button type="button" onClick={onClose} className="btn btn-ghost">
-              Cancel
-            </button>
-            <button type="submit" className="btn btn-primary">
-              Update
-            </button>
-          </div>
+          <button type="submit" className="btn btn-primary w-full mt-2">
+            Update
+          </button>
         </form>
       </div>
     </div>
