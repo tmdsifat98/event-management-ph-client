@@ -2,9 +2,14 @@ import React, { useEffect, useState } from "react";
 import useAxiosLocal from "../../hooks/useAxiosLocal";
 import { FaCalendarAlt } from "react-icons/fa";
 import { FaLocationDot } from "react-icons/fa6";
+import { Link, useNavigate } from "react-router";
+import Swal from "sweetalert2";
+import useAuth from "../../hooks/useAuth";
 
 const UpcomingEvents = () => {
   const axiosLocal = useAxiosLocal();
+  const { user } = useAuth();
+  const navigate = useNavigate();
   const [upcomingEvents, setUpcomingEvents] = useState([]);
   useEffect(() => {
     axiosLocal
@@ -12,8 +17,57 @@ const UpcomingEvents = () => {
       .then((res) => setUpcomingEvents(res.data));
   }, []);
   const slicedEvent = upcomingEvents.slice(0, 6);
+
+  const handleJoin = async (id) => {
+    const userEmail = user?.email;
+    if (!userEmail) {
+      Swal.fire({
+        title: "Please login to join this event",
+        icon: "warning",
+        showCancelButton: true,
+        confirmButtonColor: "blue",
+        confirmButtonText: "Login",
+        cancelButtonColor: "red",
+      }).then((result) => {
+        if (result.isConfirmed) {
+          navigate("/auth/login");
+        }
+      });
+      return;
+    }
+    axiosLocal
+      .patch(`/events/${id}/join`, { userEmail })
+      .then((res) => {
+        if (res.data.modifiedCount > 0) {
+          Swal.fire({
+            position: "center",
+            icon: "success",
+            title: "Successfully joined the event",
+            showConfirmButton: false,
+            timer: 1500,
+          });
+          setUpcomingEvents((prevEvents) =>
+            prevEvents.map((event) =>
+              event._id === id
+                ? { ...event, attendeeCount: event.attendeeCount + 1 }
+                : event
+            )
+          );
+        } else if (res.data.modifiedCount === 0) {
+          Swal.fire({
+            position: "center",
+            icon: "error",
+            title: "You have already joined this event",
+            showConfirmButton: false,
+            timer: 1500,
+          });
+        }
+      })
+      .catch((err) => console.log(err));
+  };
+
   return (
-    <div className="w-11/12 md:w-4/5 mx-auto">
+    <div className="w-11/12 md:w-4/5 mx-auto flex flex-col items-center justify-center">
       <h1 className="text-4xl md:text-5xl text-center font-bold font-playfair mt-3 mb-5 dark:text-white">
         Upcoming Events (in a week)
       </h1>
@@ -38,14 +92,17 @@ const UpcomingEvents = () => {
                 <FaLocationDot />
                 {event.eventLocation}
               </div>
-              <p className="text-gray-700 dark:text-gray-300 mb-4">
+              <p className="text-gray-700 dark:text-gray-300 pl-3 mb-4 line-clamp-3">
                 {event.eventDescription}
               </p>
               <div className="flex items-center justify-between mt-4">
                 <span className="text-sm text-gray-600 dark:text-gray-400">
                   Attendees: <strong>{event.attendeeCount}</strong>
                 </span>
-                <button className="px-4 py-2 bg-blue-500 text-white text-sm font-medium rounded hover:bg-blue-600 transition-colors duration-200">
+                <button
+                  onClick={() => handleJoin(event._id)}
+                  className="btn btn-primary"
+                >
                   Join Event
                 </button>
               </div>
@@ -53,6 +110,9 @@ const UpcomingEvents = () => {
           </div>
         ))}
       </div>
+      <Link to="/events" className="btn btn-primary text-center mt-6">
+        See all Events
+      </Link>
     </div>
   );
 };

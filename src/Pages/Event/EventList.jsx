@@ -4,6 +4,9 @@ import useAuth from "../../hooks/useAuth";
 import useAxiosLocal from "../../hooks/useAxiosLocal";
 import Swal from "sweetalert2";
 import Loader from "../../Components/Loader";
+import { FaCalendarAlt } from "react-icons/fa";
+import { FaLocationDot } from "react-icons/fa6";
+import { Link } from "react-router";
 
 const EventList = ({ events, loading }) => {
   const { user } = useAuth();
@@ -42,7 +45,7 @@ const EventList = ({ events, loading }) => {
           Swal.fire({
             position: "center",
             icon: "error",
-            title: "You have already joined the event",
+            title: "You have already joined this event",
             showConfirmButton: false,
             timer: 1500,
           });
@@ -61,20 +64,41 @@ const EventList = ({ events, loading }) => {
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 p-4">
           {updatedEvent.map((event) => (
             <div key={event._id} className="border rounded-lg p-4 shadow">
-              <h2 className="text-xl font-bold">{event.eventTitle}</h2>
-              <p className="text-gray-600 dark:text-gray-300">
-                Posted by: {event.userName}
+              <h2 className="text-2xl font-bold text-gray-800 dark:text-white mb-2">
+                {event.eventTitle}
+              </h2>
+              <p className="text-sm text-gray-500">
+                Posted by{" "}
+                <span className="font-medium text-gray-700 dark:text-gray-300">
+                  {event.userName}
+                </span>
               </p>
-              <p>Date & Time: {new Date(event.dateAndTime).toLocaleString()}</p>
-              <p>Location: {event.eventLocation}</p>
-              <p className="mt-2">{event.eventDescription}</p>
-              <p className="mt-1">Attendees: {event.attendeeCount}</p>
-              <button
-                className="mt-3 px-4 py-2 bg-blue-500 text-white rounded"
-                onClick={() => handleJoin(event._id)}
-              >
-                Join Event
-              </button>
+              <p className="text-sm text-gray-500 my-2">
+                <span className="text-sm text-gray-600 dark:text-gray-400">
+                  Attendees: <strong>{event.attendeeCount}</strong>
+                </span>
+              </p>
+              <div className="flex items-center gap-2 text-gray-600 dark:text-gray-300 text-sm mb-2">
+                <FaCalendarAlt />
+                {new Date(event.dateAndTime).toLocaleString()}
+              </div>
+              <div className="flex gap-2 items-center text-gray-600 dark:text-gray-300 text-sm mb-4">
+                <FaLocationDot />
+                {event.eventLocation}
+              </div>
+              <div className="text-gray-700 dark:text-gray-300 pl-3 mb-4">
+                <span className=" line-clamp-3">{event.eventDescription}</span>
+                <button>view more</button>
+              </div>
+              <div className="flex items-center justify-between mt-4">
+                <Link to={`${event._id}`} className="btn btn-accent">View Details</Link>
+                <button
+                  onClick={() => handleJoin(event._id)}
+                  className="btn btn-primary"
+                >
+                  Join Event
+                </button>
+              </div>
             </div>
           ))}
         </div>

@@ -18,7 +18,7 @@ const hotelStatus = [
     value: 87,
     icon: <MdEventAvailable />,
   },
-  { id: 4, label: "Positive Reviews", value: 1342, icon: <IoStar /> },
+  { id: 4, label: "Positive Reviews", value: 342, icon: <IoStar /> },
 ];
 const CountAnimation = () => {
   return (

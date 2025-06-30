@@ -9,6 +9,7 @@ import AddEvent from "../Pages/AddEvent";
 import MyEvent from "../Pages/MyEvent";
 import ErrorPage from "../Pages/Error/ErrorPage";
 import EventPage from "../Pages/Event/EventPage";
+import EventDetails from "../Pages/Event/EventDetails";
 
 const router = createBrowserRouter([
   {
@@ -37,6 +38,14 @@ const router = createBrowserRouter([
         element: (
           <PrivateRoute>
             <MyEvent />
+          </PrivateRoute>
+        ),
+      },
+      {
+        path: "/events/:id",
+        element: (
+          <PrivateRoute>
+            <EventDetails/>
           </PrivateRoute>
         ),
       },
