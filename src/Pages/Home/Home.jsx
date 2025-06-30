@@ -4,6 +4,7 @@ import NewsLater from "./NewsLater";
 import FeaturesSection from "./FeaturesSection";
 import Marquiee from "./Marquiee";
 import UpcomingEvents from "./UpcomingEvents";
+import CountAnimation from "./CountAnimation";
 
 const Home = () => {
   return (
@@ -19,6 +20,9 @@ const Home = () => {
     </section>
       <section>
         <FeaturesSection />
+      </section>
+      <section>
+        <CountAnimation/>
       </section>
       <section>
         <NewsLater />
