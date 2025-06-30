@@ -1,10 +1,15 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import EventSearch from "./EventSearch";
 import EventList from "./EventList";
 
 const EventPage = () => {
   const [events, setEvents] = useState([]);
   const [loading, setLoading] = useState(true);
+
+     useEffect(() => {
+    document.title = "Events";
+  }, []);
+
 
   return (
     <div className="p-4">

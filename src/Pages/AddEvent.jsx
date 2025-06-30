@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import useAuth from "../hooks/useAuth";
 import Swal from "sweetalert2";
 import useAxiosLocal from "../hooks/useAxiosLocal";
@@ -39,6 +39,11 @@ const AddEvent = () => {
         console.log(err);
       });
   };
+
+     useEffect(() => {
+    document.title = "Add Events";
+  }, []);
+
 
   return (
     <div className="min-h-[calc(100vh-64px)] bg-event pt-12">

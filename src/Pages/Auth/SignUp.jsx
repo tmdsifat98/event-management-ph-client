@@ -1,14 +1,16 @@
-import React, { useState } from "react";
-import { IoEye, IoEyeOff } from "react-icons/io5";
+import React, { useEffect, useState } from "react";
+import { IoEye, IoEyeOff, IoLockOpenOutline } from "react-icons/io5";
 import { Link, useNavigate } from "react-router";
 import signUpAnimation from "../../assets/signuplottie.json";
 import Lottie from "lottie-react";
-import useAxiosSecure from "../../hooks/useAxiosSecure";
+import useaxiosLocal from "../../hooks/useaxiosLocal";
 import Swal from "sweetalert2";
+import { MdMonochromePhotos, MdOutlineEmail } from "react-icons/md";
+import { FaUserAlt } from "react-icons/fa";
 
 const SignUp = () => {
-  const axiosSecure = useAxiosSecure();
-  const navigate=useNavigate()
+  const axiosLocal = useaxiosLocal();
+  const navigate = useNavigate();
   const [showPass, setShowPass] = useState(false);
   const [error, setError] = useState("");
   const validatePassword = (e) => {
@@ -30,11 +32,11 @@ const SignUp = () => {
     const formData = new FormData(form);
     const userData = Object.fromEntries(formData.entries());
 
-    axiosSecure
+    axiosLocal
       .post("/register", userData)
       .then((res) => {
         if (res.data.insertedId) {
-          navigate("/auth/login")
+          navigate("/auth/login");
           Swal.fire({
             position: "center",
             icon: "success",
@@ -52,6 +54,10 @@ const SignUp = () => {
         });
       });
   };
+  useEffect(() => {
+    document.title = "All Event | Login";
+  }, []);
+
   return (
     <div className="flex flex-col md:flex-row justify-center md:gap-24 items-center min-h-[calc(100vh-64px)]">
       <div className="z-10 w-11/12 backdrop-blur-sm p-8 rounded shadow-2xl md:max-w-md transition-colors duration-500">
@@ -64,43 +70,53 @@ const SignUp = () => {
             <label className="block mb-1 font-semibold text-gray-600 dark:text-gray-300">
               Name
             </label>
-            <input
-              type="text"
-              name="name"
-              placeholder="Enter your name"
-              required
-              className="w-full px-4 py-2 border border-gray-300 dark:border-gray-700 rounded-lg bg-white dark:bg-gray-800 text-black dark:text-white focus:outline-none"
-            />
+            <div className="w-full flex gap-2 justify-between items-center px-4 py-2 border border-gray-300 dark:border-gray-700 rounded-lg bg-white dark:bg-gray-800 text-black dark:text-white focus:outline-none">
+              <FaUserAlt size={13} />
+              <input
+                type="text"
+                name="name"
+                placeholder="Enter your name"
+                required
+                className="flex-1 border-0 outline-0"
+              />
+            </div>
           </div>
           <div>
             <label className="block mb-1 font-semibold text-gray-600 dark:text-gray-300">
               Photo URL
             </label>
-            <input
-              type="text"
-              name="photoURL"
-              placeholder="Enter your Photo URL"
-              required
-              className="w-full px-4 py-2 border border-gray-300 dark:border-gray-700 rounded-lg bg-white dark:bg-gray-800 text-black dark:text-white focus:outline-none"
-            />
+            <div className="w-full flex gap-2 justify-between items-center px-4 py-2 border border-gray-300 dark:border-gray-700 rounded-lg bg-white dark:bg-gray-800 text-black dark:text-white focus:outline-none">
+              <MdMonochromePhotos />
+              <input
+                type="text"
+                name="photoURL"
+                placeholder="Enter your Photo URL"
+                required
+                className="flex-1 border-0 outline-0"
+              />
+            </div>
           </div>
           <div>
             <label className="block mb-1 font-semibold text-gray-600 dark:text-gray-300">
               Email
             </label>
-            <input
-              type="email"
-              name="email"
-              placeholder="Enter your email"
-              required
-              className="w-full px-4 py-2 border border-gray-300 dark:border-gray-700 rounded-lg bg-white dark:bg-gray-800 text-black dark:text-white focus:outline-none "
-            />
+            <div className="w-full flex gap-2 justify-between items-center px-4 py-2 border border-gray-300 dark:border-gray-700 rounded-lg bg-white dark:bg-gray-800 text-black dark:text-white focus:outline-none">
+              <MdOutlineEmail />
+              <input
+                type="email"
+                name="email"
+                placeholder="Enter your email"
+                required
+                className="flex-1 border-0 outline-0"
+              />
+            </div>
           </div>
           <div>
             <label className="block mb-1 font-semibold text-gray-600 dark:text-gray-300">
               Password
             </label>
-            <div className="w-full flex justify-between items-center px-4 py-2 border border-gray-300 dark:border-gray-700 rounded-lg bg-white dark:bg-gray-800 text-black dark:text-white focus:outline-none">
+            <div className="w-full flex justify-between items-center gap-2 px-4 py-2 border border-gray-300 dark:border-gray-700 rounded-lg bg-white dark:bg-gray-800 text-black dark:text-white focus:outline-none">
+              <IoLockOpenOutline />
               <input
                 onChange={validatePassword}
                 name="password"

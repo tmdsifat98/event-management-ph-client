@@ -55,7 +55,7 @@ const EventList = ({ events, loading }) => {
   };
 
   return (
-    <div className="md:w-9/12 mx-auto min-h-[calc(100vh-322px)] dark:text-white">
+    <div className="md:w-5/6 mx-auto min-h-[calc(100vh-322px)] dark:text-white">
       {loading ? (
         <Loader />
       ) : updatedEvent.length < 1 ? (
@@ -75,7 +75,7 @@ const EventList = ({ events, loading }) => {
               </p>
               <p className="text-sm text-gray-500 my-2">
                 <span className="text-sm text-gray-600 dark:text-gray-400">
-                  Attendees: <strong>{event.attendeeCount}</strong>
+                  Attendees: <strong>{String(event.attendeeCount).padStart(2, "0")}</strong>
                 </span>
               </p>
               <div className="flex items-center gap-2 text-gray-600 dark:text-gray-300 text-sm mb-2">

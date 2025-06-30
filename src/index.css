@@ -3,9 +3,14 @@
 @import "tailwindcss";
 @custom-variant dark (&:where(.dark, .dark *));
 @plugin "daisyui";
+@plugin "daisyui/theme" {
+  name: "light";
+  default: true;
+  --color-primary: #2d9cdb;
+}
 
 a.active {
-  color: blue;
+  color: #2d9cdb;
   font-weight: 700;
 }
 

@@ -10,6 +10,8 @@ import MyEvent from "../Pages/MyEvent";
 import ErrorPage from "../Pages/Error/ErrorPage";
 import EventPage from "../Pages/Event/EventPage";
 import EventDetails from "../Pages/Event/EventDetails";
+import TermsAndCondition from "../Pages/Policies/TermsAndConditions";
+import PrivacyPolicy from "../Pages/Policies/PrivacyPolicy";
 
 const router = createBrowserRouter([
   {
@@ -49,6 +51,8 @@ const router = createBrowserRouter([
           </PrivateRoute>
         ),
       },
+      {path:"/termsAndConditions",Component:TermsAndCondition},
+      {path:"/privacyPolicy",Component:PrivacyPolicy},
     ],
   },
   {

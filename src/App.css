@@ -1,21 +1,21 @@
 .banner-bg-1 {
-  background: linear-gradient(0deg, rgb(15, 15, 15, 0.5), rgb(15, 15, 15, 0.88)),
+  background: linear-gradient(0deg, rgb(15, 15, 15, 0.7), rgb(15, 15, 15, 0.88)),
     url("./assets/banner1.jpg");
-  background-position: start;
+  background-position: center;
   background-size: cover;
   background-repeat: no-repeat;
 }
 .banner-bg-2 {
-  background: linear-gradient(0deg, rgb(15, 15, 15, 0.5), rgb(15, 15, 15, 0.88)),
+  background: linear-gradient(0deg, rgb(15, 15, 15, 0.7), rgb(15, 15, 15, 0.88)),
     url("./assets/banner2.jpg");
-  background-position: start;
+  background-position: center;
   background-size: cover;
   background-repeat: no-repeat;
 }
 .banner-bg-3 {
   background: linear-gradient(0deg, rgb(15, 15, 15, 0.7), rgb(15, 15, 15, 0.88)),
     url("./assets/banner3.jpg");
-  background-position: start;
+  background-position: center;
   background-size: cover;
   background-repeat: no-repeat;
 }

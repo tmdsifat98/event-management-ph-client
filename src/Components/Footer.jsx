@@ -8,7 +8,7 @@ import { Link, NavLink } from "react-router";
 
 const Footer = () => {
   return (
-    <footer className="px-1 w-11/12 mx-auto py-3 divide-y text-white">
+    <footer className="px-1 w-11/12 mx-auto py-3 divide-y text-black dark:text-gray-300">
       <div className=" grid grid-cols-2 gap-6 py-6 lg:grid-cols-4 items-start">
         <div className="lg:w-1/3">
           <NavLink to="/">
@@ -20,7 +20,7 @@ const Footer = () => {
           </div>
         </div>
         <div className="lg:space-y-3 flex flex-col items-center">
-          <h3 className="tracking-wide uppercase dark:text-gray-900">
+          <h3 className="tracking-wide uppercase dark:text-gray-100 font-semibold">
             Company
           </h3>
           <ul className="space-y-1 flex flex-col lg:items-start items-center">
@@ -28,12 +28,12 @@ const Footer = () => {
               <Link to="/privacyPolicy">Privacy policy</Link>
             </li>
             <li>
-              <Link to="/termsCondition">Terms of Service</Link>
+              <Link to="/termsAndConditions">Terms of Service</Link>
             </li>
           </ul>
         </div>
         <div className="lg:space-y-3 flex flex-col lg:items-center">
-          <h3 className="tracking-wide uppercase dark:text-gray-900">
+          <h3 className="tracking-wide uppercase dark:text-gray-100 font-semibold">
             Services
           </h3>
           <ul>
@@ -46,21 +46,21 @@ const Footer = () => {
           </ul>
         </div>
         <div className="lg:space-y-3 gap-2 flex flex-col items-center">
-          <div className="uppercase dark:text-gray-900">Social media</div>
+          <div className="uppercase dark:text-gray-100 font-semibold">Social media</div>
           <div className="flex justify-start items-center space-x-3">
-            <a href="https://www.facebook.com/sifat.tarafder.5" target="_blank">
+            <a href="https://www.facebook.com/sifat.tarafder.5" target="_blank" className="text-blue-700">
               <FaFacebook size={21} />
             </a>
-            <a href="https://x.com/SifatTarafder98" target="_blank">
+            <a href="https://x.com/SifatTarafder98" target="_blank" className="text-blue-500">
               <FaTwitter size={21} />
             </a>
-            <a href="https://www.instagram.com/sifat_trf98/" target="_blank">
+            <a href="https://www.instagram.com/sifat_trf98/" target="_blank" className="text-pink-700">
               <FaInstagram size={23} />
             </a>
           </div>
         </div>
       </div>
-      <div className="py-6 text-sm text-center text-gray-50">
+      <div className="py-6 text-sm text-center text-gray-600 dark:text-gray-300">
         © 2025 All-Events. All rights reserved.
       </div>
     </footer>

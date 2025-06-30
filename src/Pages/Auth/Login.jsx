@@ -1,14 +1,15 @@
-import React, { useState } from "react";
-import { IoEye, IoEyeOff } from "react-icons/io5";
+import React, { useEffect, useState } from "react";
+import { IoEye, IoEyeOff, IoLockOpenOutline } from "react-icons/io5";
 import { Link, useLocation, useNavigate } from "react-router";
 import loginAnimation from "../../assets/loginLotie.json";
 import Lottie from "lottie-react";
-import useAxiosSecure from "../../hooks/useAxiosSecure";
 import Swal from "sweetalert2";
 import useAuth from "../../hooks/useAuth";
+import { MdOutlineEmail } from "react-icons/md";
+import useAxiosLocal from "../../hooks/useAxiosLocal";
 
 const Login = () => {
-  const axiosSecure = useAxiosSecure();
+  const axiosLocal = useAxiosLocal();
   const { setUser } = useAuth();
 
   const location = useLocation();
@@ -21,7 +22,7 @@ const Login = () => {
     const email = form.email.value;
     const password = form.password.value;
     const user = { email, password };
-    axiosSecure
+    axiosLocal
       .post("/login", user)
       .then((res) => {
         if (res.data.message === "Login successful.") {
@@ -54,6 +55,9 @@ const Login = () => {
         }
       });
   };
+  useEffect(() => {
+    document.title = "All Event | Login";
+  }, []);
   return (
     <div className="flex flex-col md:flex-row justify-center md:gap-20 items-center min-h-[calc(100vh-64px)]">
       <div className="z-10 w-11/12 backdrop-blur-sm p-8 rounded shadow-2xl md:max-w-md transition-colors duration-500">
@@ -66,19 +70,23 @@ const Login = () => {
             <label className="block mb-1 font-semibold text-gray-600 dark:text-gray-300">
               Email
             </label>
-            <input
-              type="email"
-              name="email"
-              placeholder="Enter your email"
-              required
-              className="w-full px-4 py-2 border border-gray-300 dark:border-gray-700 rounded-lg bg-white dark:bg-gray-800 text-black dark:text-white focus:outline-none "
-            />
+            <div className="w-full flex gap-2 justify-between items-center px-4 py-2 border border-gray-300 dark:border-gray-700 rounded-lg bg-white dark:bg-gray-800 text-black dark:text-white focus:outline-none">
+              <MdOutlineEmail />
+              <input
+                type="email"
+                name="email"
+                placeholder="Enter your email"
+                required
+                className="flex-1 border-0 outline-0"
+              />
+            </div>
           </div>
           <div>
             <label className="block mb-1 font-semibold text-gray-600 dark:text-gray-300">
               Password
             </label>
-            <div className="w-full flex justify-between items-center px-4 py-2 border border-gray-300 dark:border-gray-700 rounded-lg bg-white dark:bg-gray-800 text-black dark:text-white focus:outline-none">
+            <div className="w-full flex gap-2 justify-between items-center px-4 py-2 border border-gray-300 dark:border-gray-700 rounded-lg bg-white dark:bg-gray-800 text-black dark:text-white focus:outline-none">
+              <IoLockOpenOutline />
               <input
                 name="password"
                 type={showPass ? "text" : "password"}
@@ -96,7 +104,7 @@ const Login = () => {
             </div>
           </div>
           <div className="mt-5">
-            <button className="w-full btn btn-primary">Sign Up</button>
+            <button className="w-full btn btn-primary">Log In</button>
           </div>
         </form>
         <p className="mt-4 dark:text-gray-200">

@@ -35,7 +35,7 @@ const Navbar = () => {
   };
   return (
     <div className="bg-black/30 dark:bg-white/10 backdrop-blur-sm ">
-      <div className="navbar md:w-11/12 p-0 mx-auto text-white">
+      <div className="navbar w-11/12 p-0 mx-auto text-white">
         <div className="navbar-start">
           <div className="dropdown cursor-pointer">
             <div tabIndex={0} className="lg:hidden mr-3">
@@ -96,7 +96,7 @@ const Navbar = () => {
             </div>
           ) : (
             <Link to="/auth/login">
-              <button className="btn bg-[#44cf44] border-none lg:px-6 ">
+              <button className="btn btn-primary border-none lg:px-6 ">
                 Login
               </button>
             </Link>

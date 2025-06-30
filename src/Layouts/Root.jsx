@@ -5,12 +5,12 @@ import Footer from "../Components/Footer";
 
 const Root = () => {
   return (
-    <div className="dark:bg-gray-900">
+    <div className="dark:bg-gray-950">
       <header className="sticky top-0 z-[999]">
         <Navbar />
       </header>
       <Outlet />
-      <footer className="bg-gray-500">
+      <footer className="bg-gray-300 dark:bg-gray-500">
         <Footer />
       </footer>
     </div>

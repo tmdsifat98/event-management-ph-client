@@ -1,0 +1,72 @@
+[
+  {
+    "id": "org_001",
+    "name": "EventX Bangladesh",
+    "photo": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTCvZ0nDCs4ViM-VEdfBUcMAs3u1aBcsmfYkg&s",
+    "events_organized": 48,
+    "rating": 4.8
+  },
+  {
+    "id": "org_002",
+    "name": "Tech Innovators",
+    "photo": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTLmtQ0fkbeeB_Eixug7QLbER3pugYBX0KFvw&s",
+    "events_organized": 35,
+    "rating": 4.7
+  },
+  {
+    "id": "org_003",
+    "name": "BanglaFest Ltd.",
+    "photo": "https://asiatrend.org/wp-content/uploads/021316_BanglaFest-2016.jpg",
+    "events_organized": 52,
+    "rating": 4.6
+  },
+  {
+    "id": "org_004",
+    "name": "Startup Hive",
+    "photo": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTC1uJV3npL9jxPl25gpIZJw5-yTshR3smD1g&s",
+    "events_organized": 40,
+    "rating": 4.5
+  },
+  {
+    "id": "org_005",
+    "name": "NextGen Events",
+    "photo": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR3ypLvUEj9qH137Ol6XvsMWP78O9oINajpPw&s",
+    "events_organized": 37,
+    "rating": 4.7
+  },
+  {
+    "id": "org_006",
+    "name": "The Sports Hub",
+    "photo": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTVd6r62hJHe8jCeYyGcsv8ABTflvkhVEJSvA&s",
+    "events_organized": 29,
+    "rating": 4.4
+  },
+  {
+    "id": "org_007",
+    "name": "CultureWave",
+    "photo": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTX2Shn7zje4bB9Kh0vWK7xyZxV11sKc7Vs5A&s",
+    "events_organized": 31,
+    "rating": 4.6
+  },
+  {
+    "id": "org_008",
+    "name": "Edukraft",
+    "photo": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQAvkfNF0xr6jRdL-tyoYjmmEMmH5Itn7_oZw&s",
+    "events_organized": 22,
+    "rating": 4.3
+  },
+  {
+    "id": "org_009",
+    "name": "Foodies United",
+    "photo": "https://theunionvancouver.ca/wp-content/uploads/2023/11/foodies-logo.png",
+    "events_organized": 26,
+    "rating": 4.5
+  },
+  {
+    "id": "org_010",
+    "name": "TravelMania BD",
+    "photo": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRZPkCNr1YwD0TyR9QQcL787nGpc7Yyaaq4Fw&s",
+    "events_organized": 18,
+    "rating": 4.2
+  }
+]

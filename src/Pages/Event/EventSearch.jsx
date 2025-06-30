@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import useAxiosLocal from "../../hooks/useAxiosLocal";
+import { IoSearchOutline } from "react-icons/io5";
 
 const EventSearch = ({ setEvents, setLoading }) => {
   const axiosLocal = useAxiosLocal();
@@ -47,17 +48,27 @@ const EventSearch = ({ setEvents, setLoading }) => {
       onSubmit={handleSearch}
       className="flex gap-2 mb-6 w-full md:w-2/3 lg:w-1/3 mx-auto"
     >
-      <input
-        type="text"
-        placeholder="Search by event title"
-        value={searchText}
-        onChange={(e) => setSearchText(e.target.value)}
-        className="input input-bordered w-full"
-      />
+      <div className="bg-white rounded items-center w-full px-0 border border-gray-300 flex gap-2 justify-between pl-2 text-black">
+        <IoSearchOutline size={23}/>
+        <input
+          type="text"
+          placeholder="Search by event title"
+          value={searchText}
+          onChange={(e) => setSearchText(e.target.value)}
+          className=" text-black w-full py-2 outline-none"
+        />
+        <button
+          type="submit"
+          className="btn btn-primary border-none rounded-l-none flex items-center justify-center px-2 md:px-4"
+        >
+          Search
+        </button>
+      </div>
+
       <select
         value={filterOption}
         onChange={handleFilterChange}
-        className="select select-bordered w-full md:w-auto"
+        className="select select-bordered w-2/5"
       >
         <option value="">All Dates</option>
         <option value="today">Today</option>
@@ -66,9 +77,6 @@ const EventSearch = ({ setEvents, setLoading }) => {
         <option value="currentMonth">Current Month</option>
         <option value="lastMonth">Last Month</option>
       </select>
-      <button type="submit" className="btn btn-primary">
-        Search
-      </button>
     </form>
   );
 };

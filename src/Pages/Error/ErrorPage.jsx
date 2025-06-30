@@ -4,7 +4,7 @@ import { Link } from "react-router";
 
 const ErrorPage = () => {
   useEffect(() => {
-    document.title = "Lodgify | Error";
+    document.title = "All Events | Error";
   }, []);
   return (
     <div className="flex flex-col h-screen justify-center items-center">

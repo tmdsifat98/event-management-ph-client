@@ -68,8 +68,8 @@ const UpcomingEvents = () => {
 
   return (
     <div className="w-11/12 md:w-4/5 mx-auto flex flex-col items-center justify-center">
-      <h1 className="text-4xl md:text-5xl text-center font-bold font-playfair mt-3 mb-5 dark:text-white">
-        Upcoming Events (in a week)
+      <h1 className="text-4xl md:text-5xl text-center font-bold font-playfair mt-7 mb-5 dark:text-white">
+        Upcoming Events (This Week)
       </h1>
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 mt-9">
         {slicedEvent.map((event) => (
@@ -78,7 +78,7 @@ const UpcomingEvents = () => {
               <h2 className="text-2xl font-bold text-gray-800 dark:text-white mb-2">
                 {event.eventTitle}
               </h2>
-              <p className="text-sm text-gray-500 mb-4">
+              <p className="text-sm text-gray-500 dark:text-gray-200 mb-4">
                 Posted by{" "}
                 <span className="font-medium text-gray-700 dark:text-gray-300">
                   {event.userName}
@@ -96,8 +96,11 @@ const UpcomingEvents = () => {
                 {event.eventDescription}
               </p>
               <div className="flex items-center justify-between mt-4">
-                <span className="text-sm text-gray-600 dark:text-gray-400">
-                  Attendees: <strong>{event.attendeeCount}</strong>
+                <span className="text-sm text-gray-800 dark:text-gray-100 border border-gray-500 px-3 py-2 rounded">
+                  Attendees:{" "}
+                  <strong>
+                    {String(event.attendeeCount).padStart(2, "0")}
+                  </strong>
                 </span>
                 <button
                   onClick={() => handleJoin(event._id)}

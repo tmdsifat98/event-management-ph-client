@@ -20,6 +20,10 @@ const EventDetails = () => {
       setLoading(false);
     });
   }, [id]);
+  
+  useEffect(() => {
+    document.title = `${event.eventTitle}`;
+  }, [event.eventTitle]);
 
   const handleJoin = async (id) => {
     const userEmail = user?.email;

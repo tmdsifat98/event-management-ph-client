@@ -83,7 +83,7 @@ client/
 │   ├── EventDetails.jsx
 ├── hooks/
 │   ├── useAuth.jsx
-│   ├── useAxiosSecure.jsx
+│   ├── useaxiosLocal.jsx
 │   ├── useAxiosLocal.jsx
 ├── context/
 │   └── AuthContext.jsx

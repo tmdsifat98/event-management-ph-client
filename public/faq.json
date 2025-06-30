@@ -1,0 +1,22 @@
+[
+  {
+    "id": "faq_001",
+    "question": "Do you manage both indoor and outdoor events?",
+    "answer": "Yes, we manage both indoor and outdoor events including weddings, corporate meetings, birthday parties, and more."
+  },
+  {
+    "id": "faq_003",
+    "question": "How early should I book an event with your company?",
+    "answer": "We recommend booking at least 1-2 months in advance, especially for wedding or seasonal events."
+  },
+  {
+    "id": "faq_006",
+    "question": "Do you handle destination weddings?",
+    "answer": "Yes, we organize destination weddings both inside and outside the country, including venue booking, travel, and full planning."
+  },
+  {
+    "id": "faq_007",
+    "question": "Can I see some photos or videos of your previous events?",
+    "answer": "Of course! We have a portfolio you can browse, and we’re happy to share photos and client feedback with you."
+  }
+]
