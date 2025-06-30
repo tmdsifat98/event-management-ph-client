@@ -13,7 +13,7 @@ const Marquiee = () => {
   return (
     <Marquee speed={50} pauseOnHover={true} gradient={false} direction="left" >
       {events.map((event) => (
-        <p className="ml-10 py-6">| {event.eventTitle} ({new Date(event.dateAndTime).toLocaleString()}) at {event.eventLocation} |</p>
+        <p className="ml-10 py-5 text-black dark:text-white">| {event.eventTitle} ({new Date(event.dateAndTime).toLocaleString()}) at {event.eventLocation} |</p>
       ))}
     </Marquee>
   );

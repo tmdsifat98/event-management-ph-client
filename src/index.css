@@ -6,7 +6,7 @@
 
 a.active {
   color: blue;
-  font-weight: 600;
+  font-weight: 700;
 }
 
 * {
@@ -17,8 +17,8 @@ a.active {
   font-family: "Playfair Display", serif;
 }
 
-.bg-event{
-    background: linear-gradient(
+.bg-event {
+  background: linear-gradient(
       90deg,
       rgb(15, 15, 15, 0.7),
       rgb(15, 15, 15, 0.99)

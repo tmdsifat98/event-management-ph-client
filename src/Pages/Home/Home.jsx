@@ -3,6 +3,7 @@ import Banner from "./Banner";
 import NewsLater from "./NewsLater";
 import FeaturesSection from "./FeaturesSection";
 import Marquiee from "./Marquiee";
+import UpcomingEvents from "./UpcomingEvents";
 
 const Home = () => {
   return (
@@ -12,6 +13,9 @@ const Home = () => {
       </section>
     <section className=" bg-primary/50 mt-4">
         <Marquiee/>
+    </section>
+    <section>
+      <UpcomingEvents/>
     </section>
       <section>
         <FeaturesSection />
