@@ -5,7 +5,7 @@ const TermsAndCondition = () => {
     document.title = "Terms & Conditions";
   }, []);
   return (
-    <div className="space-y-6 text-sm text-gray-700 dark:text-gray-300 w-7/12 mx-auto">
+    <div className="space-y-6 text-sm text-gray-700 dark:text-gray-300 w-11/12 lg:w-7/12 mx-auto">
       <h1 className="text-center text-5xl font-bold font-playfair mt-5">
         Terms & Conditions
       </h1>

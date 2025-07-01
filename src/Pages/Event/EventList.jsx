@@ -7,6 +7,7 @@ import Loader from "../../Components/Loader";
 import { FaCalendarAlt } from "react-icons/fa";
 import { FaLocationDot } from "react-icons/fa6";
 import { Link } from "react-router";
+import { Fade } from "react-awesome-reveal";
 
 const EventList = ({ events, loading }) => {
   const { user } = useAuth();
@@ -57,49 +58,60 @@ const EventList = ({ events, loading }) => {
   return (
     <div className="md:w-5/6 mx-auto min-h-[calc(100vh-322px)] dark:text-white">
       {loading ? (
-        <Loader />
+        <div className="mb-24">
+          <Loader h="true" />
+        </div>
       ) : updatedEvent.length < 1 ? (
         <NoData message="No events available with your search" />
       ) : (
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 p-4">
           {updatedEvent.map((event) => (
-            <div key={event._id} className="border rounded-lg p-4 shadow">
-              <h2 className="text-2xl font-bold text-gray-800 dark:text-white mb-2">
-                {event.eventTitle}
-              </h2>
-              <p className="text-sm text-gray-500">
-                Posted by{" "}
-                <span className="font-medium text-gray-700 dark:text-gray-300">
-                  {event.userName}
-                </span>
-              </p>
-              <p className="text-sm text-gray-500 my-2">
-                <span className="text-sm text-gray-600 dark:text-gray-400">
-                  Attendees: <strong>{String(event.attendeeCount).padStart(2, "0")}</strong>
-                </span>
-              </p>
-              <div className="flex items-center gap-2 text-gray-600 dark:text-gray-300 text-sm mb-2">
-                <FaCalendarAlt />
-                {new Date(event.dateAndTime).toLocaleString()}
+            <Fade key={event._id}>
+              <div className="border rounded-lg p-4 shadow">
+                <h2 className="text-2xl font-bold text-gray-800 dark:text-white mb-2">
+                  {event.eventTitle}
+                </h2>
+                <p className="text-sm text-gray-500">
+                  Posted by{" "}
+                  <span className="font-medium text-gray-700 dark:text-gray-300">
+                    {event.userName}
+                  </span>
+                </p>
+                <p className="text-sm text-gray-500 my-2">
+                  <span className="text-sm text-gray-600 dark:text-gray-400">
+                    Attendees:{" "}
+                    <strong>
+                      {String(event.attendeeCount).padStart(2, "0")}
+                    </strong>
+                  </span>
+                </p>
+                <div className="flex items-center gap-2 text-gray-600 dark:text-gray-300 text-sm mb-2">
+                  <FaCalendarAlt />
+                  {new Date(event.dateAndTime).toLocaleString()}
+                </div>
+                <div className="flex gap-2 items-center text-gray-600 dark:text-gray-300 text-sm mb-4">
+                  <FaLocationDot />
+                  {event.eventLocation}
+                </div>
+                <div className="text-gray-700 dark:text-gray-300 pl-3 mb-4">
+                  <span className=" line-clamp-3">
+                    {event.eventDescription}
+                  </span>
+                  <button>view more</button>
+                </div>
+                <div className="flex items-center justify-between mt-4">
+                  <Link to={`${event._id}`} className="btn btn-accent">
+                    View Details
+                  </Link>
+                  <button
+                    onClick={() => handleJoin(event._id)}
+                    className="btn btn-primary"
+                  >
+                    Join Event
+                  </button>
+                </div>
               </div>
-              <div className="flex gap-2 items-center text-gray-600 dark:text-gray-300 text-sm mb-4">
-                <FaLocationDot />
-                {event.eventLocation}
-              </div>
-              <div className="text-gray-700 dark:text-gray-300 pl-3 mb-4">
-                <span className=" line-clamp-3">{event.eventDescription}</span>
-                <button>view more</button>
-              </div>
-              <div className="flex items-center justify-between mt-4">
-                <Link to={`${event._id}`} className="btn btn-accent">View Details</Link>
-                <button
-                  onClick={() => handleJoin(event._id)}
-                  className="btn btn-primary"
-                >
-                  Join Event
-                </button>
-              </div>
-            </div>
+            </Fade>
           ))}
         </div>
       )}

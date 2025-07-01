@@ -16,6 +16,7 @@ a.active {
 
 * {
   font-family: "Poppins", sans-serif;
+  scroll-behavior: smooth;
 }
 
 .font-playfair {
@@ -32,4 +33,11 @@ a.active {
   background-position: start;
   background-size: cover;
   background-repeat: no-repeat;
+}
+
+#faq,
+#features,
+#featuredEvents {
+  scroll-margin-top: 150px;
+  scroll-behavior: smooth;
 }

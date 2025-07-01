@@ -1,20 +1,20 @@
 .banner-bg-1 {
   background: linear-gradient(0deg, rgb(15, 15, 15, 0.7), rgb(15, 15, 15, 0.88)),
-    url("./assets/banner1.jpg");
+    url("https://i.ibb.co/84xv0pC8/banner1.jpg");
   background-position: center;
   background-size: cover;
   background-repeat: no-repeat;
 }
 .banner-bg-2 {
   background: linear-gradient(0deg, rgb(15, 15, 15, 0.7), rgb(15, 15, 15, 0.88)),
-    url("./assets/banner2.jpg");
+    url("https://i.ibb.co/8gW2GTRG/banner2.jpg");
   background-position: center;
   background-size: cover;
   background-repeat: no-repeat;
 }
 .banner-bg-3 {
   background: linear-gradient(0deg, rgb(15, 15, 15, 0.7), rgb(15, 15, 15, 0.88)),
-    url("./assets/banner3.jpg");
+    url("https://i.ibb.co/hxD4SMVm/banner3.jpg");
   background-position: center;
   background-size: cover;
   background-repeat: no-repeat;

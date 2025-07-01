@@ -38,10 +38,10 @@ const Footer = () => {
           </h3>
           <ul>
             <li>
-              <a>Features</a>
+              <a href="#features">Features</a>
             </li>
             <li>
-              <a>FAQ</a>
+              <a href="#faq">FAQ</a>
             </li>
           </ul>
         </div>

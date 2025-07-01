@@ -1,3 +1,4 @@
+import { Fade } from "react-awesome-reveal";
 import { FaMapSigns, FaUniversity, FaCogs, FaUsers } from "react-icons/fa";
 
 const FeaturesSection = () => {
@@ -28,17 +29,19 @@ const FeaturesSection = () => {
     },
   ];
   return (
-    <section className="w-2/3 mx-auto my-16">
+    <section className="w-2/3 mx-auto my-16 " id="features">
       <h1 className="text-5xl text-center font-bold font-playfair mb-12 dark:text-white">Our Features</h1>
       <div className="max-w-7xl mx-auto px-4 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 md:gap-12">
         {features.map((feature, index) => (
-          <div key={index} className="flex flex-col items-center text-center">
+          <Fade key={index}>
+            <div className="flex flex-col items-center text-center">
             <feature.Icon size={70} className="text-gray-600 dark:text-gray-400" />
             <h3 className="text-xl font-semibold my-2 text-gray-800 dark:text-gray-100 ">{feature.title}</h3>
             <p className="text-gray-600 dark:text-gray-400">
               {feature.description}
             </p>
           </div>
+          </Fade>
         ))}
       </div>
     </section>

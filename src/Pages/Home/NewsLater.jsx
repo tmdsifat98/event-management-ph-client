@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { Fade } from "react-awesome-reveal";
 import { BiLogoTelegram } from "react-icons/bi";
 import { MdOutlineEmail } from "react-icons/md";
 import Swal from "sweetalert2";
@@ -28,31 +29,36 @@ const NewsLater = () => {
   };
 
   return (
-    <div className="bg-gray-400 dark:bg-gray-800 py-5 w-11/12 md:w-3/4 lg:w-2/5 mx-auto rounded-lg my-10 text-black dark:text-gray-200 flex flex-col items-center text-center">
-      <h2 className="text-4xl font-bold mb-4 font-playfair mt-7">
-        Subscribe to our Newsletter
-      </h2>
-      <p className="mb-7">Stay updated with the latest events and news!</p>
-      <form onSubmit={handleSubscribe} className="w-full max-w-md mb-6 px-5 md:px-0">
-        <div className="bg-white rounded items-center px-0 w-full flex gap-2 justify-between pl-4 text-black">
-          <MdOutlineEmail size={23} />
-          <input
-            type="email"
-            placeholder="Enter your email"
-            className=" text-black w-full py-2 outline-none"
-            value={email}
-            onChange={(e) => setEmail(e.target.value)}
-            required
-          />
-          <button
-            type="submit"
-            className="btn btn-primary border-none rounded-l-none flex items-center justify-center px-1 md:px-4"
-          >
-            Subscribe <BiLogoTelegram />
-          </button>
-        </div>
-      </form>
-    </div>
+    <Fade>
+      <div className="bg-gray-400 dark:bg-gray-800 py-5 w-11/12 md:w-3/4 lg:w-2/5 mx-auto rounded-lg my-10 text-black dark:text-gray-200 flex flex-col items-center text-center">
+        <h2 className="text-4xl font-bold mb-4 font-playfair mt-7">
+          Subscribe to our Newsletter
+        </h2>
+        <p className="mb-7">Stay updated with the latest events and news!</p>
+        <form
+          onSubmit={handleSubscribe}
+          className="w-full max-w-md mb-6 px-5 md:px-0"
+        >
+          <div className="bg-white rounded items-center px-0 w-full flex gap-2 justify-between pl-4 text-black">
+            <MdOutlineEmail size={23} />
+            <input
+              type="email"
+              placeholder="Enter your email"
+              className=" text-black w-full py-2 outline-none"
+              value={email}
+              onChange={(e) => setEmail(e.target.value)}
+              required
+            />
+            <button
+              type="submit"
+              className="btn btn-primary border-none rounded-l-none flex items-center justify-center px-1 md:px-4"
+            >
+              Subscribe <BiLogoTelegram />
+            </button>
+          </div>
+        </form>
+      </div>
+    </Fade>
   );
 };
 

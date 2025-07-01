@@ -6,6 +6,7 @@ import UpdateModal from "../Components/UpdateModal";
 import { FaCalendarAlt } from "react-icons/fa";
 import { FaLocationDot } from "react-icons/fa6";
 import useAxiosLocal from "../hooks/useAxiosLocal";
+import { Fade } from "react-awesome-reveal";
 
 const MyEvent = () => {
   const { user } = useAuth();
@@ -60,43 +61,45 @@ const MyEvent = () => {
       </h1>
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 p-4">
         {events.map((event) => (
-          <div key={event._id} className="border p-4 rounded shadow">
-            <h2 className="text-2xl font-bold text-gray-800 dark:text-white mb-2">
-              {event.eventTitle}
-            </h2>
-            <p className="text-sm text-gray-500 mb-4">
-              Posted by{" "}
-              <span className="font-medium text-gray-700 dark:text-gray-300">
-                {event.userName}
-              </span>
-            </p>
-            <div className="flex items-center gap-2 text-gray-600 dark:text-gray-300 text-sm mb-2">
-              <FaCalendarAlt />
-              {new Date(event.dateAndTime).toLocaleString()}
+          <Fade key={event._id}>
+            <div className="border p-4 rounded shadow">
+              <h2 className="text-2xl font-bold text-gray-800 dark:text-white mb-2">
+                {event.eventTitle}
+              </h2>
+              <p className="text-sm text-gray-500 mb-4">
+                Posted by{" "}
+                <span className="font-medium text-gray-700 dark:text-gray-300">
+                  {event.userName}
+                </span>
+              </p>
+              <div className="flex items-center gap-2 text-gray-600 dark:text-gray-300 text-sm mb-2">
+                <FaCalendarAlt />
+                {new Date(event.dateAndTime).toLocaleString()}
+              </div>
+              <div className="flex gap-2 items-center text-gray-600 dark:text-gray-300 text-sm mb-4">
+                <FaLocationDot />
+                {event.eventLocation}
+              </div>
+              <p className="text-gray-700 dark:text-gray-300 pl-3 mb-4 line-clamp-3">
+                {event.eventDescription}
+              </p>
+              <p>Attendees: {String(event.attendeeCount).padStart(2, "0")}</p>
+              <div className="flex gap-2 justify-between items-center mt-2 px-2">
+                <button
+                  className="bg-red-500 btn text-white border-none px-5"
+                  onClick={() => handleDelete(event._id)}
+                >
+                  Delete
+                </button>
+                <button
+                  className="btn btn-primary border-none px-5"
+                  onClick={() => openUpdateModal(event)}
+                >
+                  Update
+                </button>
+              </div>
             </div>
-            <div className="flex gap-2 items-center text-gray-600 dark:text-gray-300 text-sm mb-4">
-              <FaLocationDot />
-              {event.eventLocation}
-            </div>
-            <p className="text-gray-700 dark:text-gray-300 pl-3 mb-4 line-clamp-3">
-              {event.eventDescription}
-            </p>
-            <p>Attendees: {String(event.attendeeCount).padStart(2, "0")}</p>
-            <div className="flex gap-2 justify-between items-center mt-2 px-2">
-              <button
-                className="bg-red-500 btn text-white border-none px-5"
-                onClick={() => handleDelete(event._id)}
-              >
-                Delete
-              </button>
-              <button
-                className="btn btn-primary border-none px-5"
-                onClick={() => openUpdateModal(event)}
-              >
-                Update
-              </button>
-            </div>
-          </div>
+          </Fade>
         ))}
       </div>
       <div>
