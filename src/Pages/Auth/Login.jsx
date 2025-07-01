@@ -6,7 +6,7 @@ import Lottie from "lottie-react";
 import Swal from "sweetalert2";
 import useAuth from "../../hooks/useAuth";
 import { MdOutlineEmail } from "react-icons/md";
-import useAxiosLocal from "../../hooks/useAxiosLocal";
+import useAxiosLocal from "../../hooks/useaxiosLocal";
 
 const Login = () => {
   const axiosLocal = useAxiosLocal();
@@ -29,6 +29,7 @@ const Login = () => {
           localStorage.setItem("authUser", JSON.stringify(res.data.user));
           setUser(res.data.user);
           navigate(location?.state || "/");
+          
           Swal.fire({
             position: "center",
             icon: "success",

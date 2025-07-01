@@ -7,9 +7,11 @@ import useaxiosLocal from "../../hooks/useaxiosLocal";
 import Swal from "sweetalert2";
 import { MdMonochromePhotos, MdOutlineEmail } from "react-icons/md";
 import { FaUserAlt } from "react-icons/fa";
+import useAuth from "../../hooks/useAuth";
 
 const SignUp = () => {
   const axiosLocal = useaxiosLocal();
+  const { setUser } = useAuth();
   const navigate = useNavigate();
   const [showPass, setShowPass] = useState(false);
   const [error, setError] = useState("");
@@ -36,7 +38,16 @@ const SignUp = () => {
       .post("/register", userData)
       .then((res) => {
         if (res.data.insertedId) {
-          navigate("/auth/login");
+          const savedUser = {
+            name: userData.name,
+            email: userData.email,
+            photoURL: userData.photoURL,
+          };
+          localStorage.setItem("authUser", JSON.stringify(savedUser));
+
+          navigate("/");
+          setUser(savedUser);
+
           Swal.fire({
             position: "center",
             icon: "success",
