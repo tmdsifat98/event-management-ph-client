@@ -29,7 +29,7 @@
     - Current Month
     - Last Month
 
-- 🧾 **Event Details Page**
+- 🧾 **Event Details Page (private route)**
   - Full information view with join option
   - Displays description, location, date & time, organizer, and attendees
 
@@ -56,15 +56,15 @@
 - Axios
 - SweetAlert2
 - React Icons
+- React-awesome-reveal
 
 ### 🔹 Backend:
 - Node.js
 - Express.js
-- MongoDB (Native driver, no Mongoose used)
+- MongoDB (Native driver)
 - CORS & JSON middleware
 
 ### 🔹 Other Tools:
-- Moment.js (optional for date filtering)
 - React Context API for Auth state
 - LocalStorage for persisting login
 
@@ -101,11 +101,38 @@ Follow these steps to run **All Events** on your local machine:
 
 ---
 
-### 1️⃣ Clone the Repository
-
+#Client Side
+## 1️⃣ Clone the Repository
 ```bash
-git clone https://github.com/your-username/all-events.git
-cd all-events
+https://github.com/tmdsifat98/event-management-ph-client.git
+```
+Go to your project directory
+```bash
+cd project-name
+```
+Install necessary npm packages
+```bash
 npm install
+```
+Run the server
+```bash
 npm run dev
+```
+
+## For server side
+Also you need to clone the server repository.
+```bash
+https://github.com/tmdsifat98/event-management-ph-server.git
+```
+Go to the directory and run it
+```bash
+nodemone start
+```
+Here is the local server url
+```bash
+http://localhost:3000
+```
+You can use the production server
+```bash
+event-management-server-topaz.vercel.app
 ```
