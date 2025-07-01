@@ -4,7 +4,7 @@
 
 ---
 Live Link-
-[🔗 All Events](https://your-site.com)
+[🔗 All Events](https://allevents-ph.netlify.app/)
 ---
 ## 🌟 Features
 
